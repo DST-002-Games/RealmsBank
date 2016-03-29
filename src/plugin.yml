@@ -1,0 +1,30 @@
+name: RealmsBank
+database: true
+main: net.krglok.realmsBank.RealmsBank
+version: 0.1.0.0
+description: Allows you to manage bank accounts for money and xp
+author: krglok
+startup: postworld
+website: http://dev.bukkit.org/bukkit-plugins/realmsBank/
+depend: [Vault]
+commands:
+    realmsbank:
+        description: Thtis Basic command only show version and commandlist. The plugin has an integrated help system.
+        usage: "/realmsbank only for version info and help
+ /rbAdmin admin and ops for managing bank accounts 
+ /rb player command for bank account
+ "
+    rbAdmin: 
+        description: admin and ops for managing bank accounts
+        usage: /rbAdmin HELP for more information
+    rb: 
+        description: for player to managing their accounts
+        usage: /rb HELP for more information  
+permissions:
+    realmsBank.admin:
+        description: Gives access to admin commands
+        default: op
+    realmsBank.user:
+        description: Allows you to use public commands
+        default: false
+        
