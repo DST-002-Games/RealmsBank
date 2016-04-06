@@ -39,15 +39,29 @@ public abstract class TableData
 	public String[] indexnames; 
 	public String[] indexfields;
 //	public ResultSet resultSet;
+	public boolean oldFieldList;
 	
 	/**
 	 * the Database must be given to make automatic access
 	 * @param sql
 	 */
+	public TableData(SQliteConnection sql, String tableName, boolean oldFieldList)
+	{
+		super();
+		this.sql = sql;
+		this.oldFieldList = oldFieldList;
+		tablename = tableName;
+		fieldnames = null;
+		fieldtypes = null;
+		indexnames = null;
+		indexfields = null;
+	}
+	
 	public TableData(SQliteConnection sql, String tableName)
 	{
 		super();
 		this.sql = sql;
+		this.oldFieldList = true;
 		tablename = tableName;
 		fieldnames = null;
 		fieldtypes = null;
@@ -115,10 +129,10 @@ public abstract class TableData
 			} catch (SQLException e)
 			{
 				e.printStackTrace();
-				System.out.println("[REALMS] SQL table not found "+tablename);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL table not found "+tablename);
 			}
 		}
-		System.out.println("[REALMS] SQL table not found "+tablename);
+		System.out.println(ConfigBasis.PLUGIN_NAME+" SQL table not found "+tablename);
 		return false;
 	}
 	
@@ -137,25 +151,25 @@ public abstract class TableData
 	{
 		if (this.tablename == "")
 		{
-			System.out.println("[REALMS] SQL tablename is empty ! ");
+			System.out.println(ConfigBasis.PLUGIN_NAME+" SQL tablename is empty ! ");
 			return false;
 		}
 		if (this.fieldnames == null)
 		{
-			System.out.println("[REALMS] SQL NO fieldnames defined "+tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" SQL NO fieldnames defined "+tablename);
 			return false;
 		}
 		for (String fieldname : this.fieldnames)
 		{
 			if (fieldname == "")
 			{
-				System.out.println("[REALMS] SQL empty fieldname "+tablename);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL empty fieldname "+tablename);
 				return false;
 			}
 		}
 		if (this.indexnames == null)
 		{
-			System.out.println("[REALMS] Warning, SQL NO index defined "+tablename);
+			System.out.println("ConfigBasis.PLUGIN_NAME+ Warning, SQL NO index defined "+tablename);
 		}
 		String fielddefs = makeFieldDefs();
 //		System.out.println("[REALMS] SQL Fielddefs :"+fielddefs);
@@ -163,7 +177,7 @@ public abstract class TableData
 		try {
 //			System.out.println("[REALMS] SQL :"+query);
 			this.sql.execute(query);
-			System.out.println("[REALMS] SQL TABLE created "+this.tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" SQL TABLE created "+this.tablename);
 			if (this.sql.isTable(this.tablename) == true)
 			{
 				// make the indexes
@@ -176,12 +190,12 @@ public abstract class TableData
 				}
 			} else
 			{
-				System.out.println("[REALMS] SQL TABLE not found "+this.tablename);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL TABLE not found "+this.tablename);
 				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[REALMS] SQL :"+query);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" SQL :"+query);
 			return false;
 		}
 
@@ -195,11 +209,11 @@ public abstract class TableData
 			String query = "CREATE INDEX IF NOT EXISTS "+this.indexnames[index] +" ON "+ this.tablename + " ("+this.indexfields[index]+") ";
 			try {
 				this.sql.execute(query);
-				System.out.println("[REALMS] SQL INDEX created "+this.tablename+":"+this.indexnames[index]);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL INDEX created "+this.tablename+":"+this.indexnames[index]);
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.out.println("[REALMS] SQL INDEX not created "+this.tablename+":"+this.indexnames[index]);
-				System.out.println("[REALMS] SQL :"+query);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL INDEX not created "+this.tablename+":"+this.indexnames[index]);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL :"+query);
 			}
 		}
 	}
@@ -282,7 +296,7 @@ public abstract class TableData
 			return sql.insert(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[REALMS] Insert Error on "+tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" Insert Error on "+tablename);
 		}
 		
 		return false;
@@ -302,7 +316,7 @@ public abstract class TableData
 			return sql.update(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[REALMS] Update Error on "+tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" Update Error on "+tablename);
 		}
 		
 		return false;
@@ -322,7 +336,7 @@ public abstract class TableData
 			return sql.delete(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[REALMS] Delete Error on "+tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" Delete Error on "+tablename);
 		}
 		
 		return false;

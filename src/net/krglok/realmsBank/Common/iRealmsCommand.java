@@ -25,7 +25,7 @@ public interface iRealmsCommand
 
 	public RealmsCommandType command();
 	
-	public RealmsSubCommandType subCommand();
+	public SubCommandType subCommand();
 	
 	public String[] getParaTypes();
 	

@@ -36,19 +36,19 @@ public class CommandParser
 	
 		if (args.length == 0)
 		{
-			return findSubCommand(cmdType, RealmsSubCommandType.NONE);
+			return findSubCommand(cmdType, SubCommandType.NONE);
 		}
-		RealmsSubCommandType subCommand = RealmsSubCommandType.getRealmSubCommandType(args[0]);
-		if (subCommand != RealmsSubCommandType.NONE)
+		SubCommandType subCommand = SubCommandType.getRealmSubCommandType(args[0]);
+		if (subCommand != SubCommandType.NONE)
 		{
 			return checkParameter(cmdType, subCommand, args); 
 		}else
 		{
-			return findSubCommand(cmdType, RealmsSubCommandType.HELP);
+			return findSubCommand(cmdType, SubCommandType.HELP);
 		}
 	}
 	
-	private aRealmsCommand findSubCommand(RealmsCommandType cmdType, RealmsSubCommandType subCommand)
+	private aRealmsCommand findSubCommand(RealmsCommandType cmdType, SubCommandType subCommand)
 	{
 		if (commandList.length > 0)
 		{
@@ -67,14 +67,14 @@ public class CommandParser
 	}
 	
 	
-	private aRealmsCommand checkParameter (RealmsCommandType cmdType, RealmsSubCommandType subCommand, String[] args )
+	private aRealmsCommand checkParameter (RealmsCommandType cmdType, SubCommandType subCommand, String[] args )
 	{
 //		args = decreaseArgs(args);
 		aRealmsCommand cmd = findSubCommand(cmdType, subCommand);
 		// SubCommand NOT found
 		if (cmd == null)
 		{
-			return  findSubCommand(cmdType, RealmsSubCommandType.HELP);
+			return  findSubCommand(cmdType, SubCommandType.HELP);
 		}
 		cmd.setParserError(false);		
 		// Check Arguments of SubCommand

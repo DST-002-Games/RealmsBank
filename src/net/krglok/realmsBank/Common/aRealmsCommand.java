@@ -32,14 +32,14 @@ import org.bukkit.inventory.meta.BookMeta;
 public abstract class aRealmsCommand implements iRealmsCommand
 {
 	private RealmsCommandType command;
-	private RealmsSubCommandType subCommand;
+	private SubCommandType subCommand;
 	protected String[] description;
 	protected int requiredArgs;
 	protected MessageList errorMsg;
 	protected boolean isParserError; 
 	protected String helpPage;
 	
-	public aRealmsCommand(RealmsCommandType command, RealmsSubCommandType subCommand)
+	public aRealmsCommand(RealmsCommandType command, SubCommandType subCommand)
 	{
 		this.command = command; 
 		this.subCommand = subCommand;
@@ -124,7 +124,7 @@ public abstract class aRealmsCommand implements iRealmsCommand
 	}
 	
 	@Override
-	public RealmsSubCommandType subCommand()
+	public SubCommandType subCommand()
 	{
 		return this.subCommand;
 	}
@@ -241,7 +241,7 @@ public abstract class aRealmsCommand implements iRealmsCommand
 	
 	public ArrayList<String> getCommandDescription(aRealmsCommand[] cmdList
 			, RealmsCommandType commandType
-			, RealmsSubCommandType subCommandType)
+			, SubCommandType subCommandType)
 	{
 		for (iRealmsCommand cmd : cmdList)
 		{
@@ -267,11 +267,11 @@ public abstract class aRealmsCommand implements iRealmsCommand
     	{
 	    	msg.add(ChatColor.GREEN+"{"+ConfigBasis.PLUGIN_NAME+"]   Help Page");
 			msg.addAll(getDescriptionString());
-			if (this.subCommand() != RealmsSubCommandType.HELP)
+			if (this.subCommand() != SubCommandType.HELP)
 			{
 				for (iRealmsCommand cmd : cmdList)
 				{
-					if ((cmd.subCommand() != RealmsSubCommandType.NONE) 
+					if ((cmd.subCommand() != SubCommandType.NONE) 
 						&& (this.command() == cmd.command())
 						)
 					{
@@ -284,7 +284,7 @@ public abstract class aRealmsCommand implements iRealmsCommand
 			{
 				for (iRealmsCommand cmd : cmdList)
 				{
-					if ((cmd.subCommand() != RealmsSubCommandType.NONE) 
+					if ((cmd.subCommand() != SubCommandType.NONE) 
 						&& (this.command() != cmd.command())
 						)
 					{

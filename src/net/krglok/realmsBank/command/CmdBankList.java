@@ -13,7 +13,7 @@ import net.krglok.realmsBank.RealmsBank;
 import net.krglok.realmsBank.Common.ConfigBasis;
 import net.krglok.realmsBank.Common.MessageList;
 import net.krglok.realmsBank.Common.RealmsCommandType;
-import net.krglok.realmsBank.Common.RealmsSubCommandType;
+import net.krglok.realmsBank.Common.SubCommandType;
 import net.krglok.realmsBank.Common.aRealmsCommand;
 import net.krglok.realmsBank.core.BankAccount;
 
@@ -36,7 +36,7 @@ public class CmdBankList extends aRealmsCommand
 	 */
 	public CmdBankList()
 	{
-		super(RealmsCommandType.RBADMIN, RealmsSubCommandType.LIST);
+		super(RealmsCommandType.RBADMIN, SubCommandType.LIST);
 		description = new String[] {
 				ChatColor.GREEN+"/rb list {page} list all bank accounts",
 		    	"Only for Admin or OP  "

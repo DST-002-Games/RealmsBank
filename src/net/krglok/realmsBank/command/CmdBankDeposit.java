@@ -13,7 +13,7 @@ import net.krglok.realmsBank.RealmsBank;
 import net.krglok.realmsBank.Common.ConfigBasis;
 import net.krglok.realmsBank.Common.MessageList;
 import net.krglok.realmsBank.Common.RealmsCommandType;
-import net.krglok.realmsBank.Common.RealmsSubCommandType;
+import net.krglok.realmsBank.Common.SubCommandType;
 import net.krglok.realmsBank.Common.aRealmsCommand;
 import net.krglok.realmsBank.core.BankAccount;
 import net.krglok.realmsBank.data.TextConstant;
@@ -39,7 +39,7 @@ public class CmdBankDeposit extends aRealmsCommand
 	 */
 	public CmdBankDeposit()
 	{
-		super(RealmsCommandType.RB, RealmsSubCommandType.DEPOSIT);
+		super(RealmsCommandType.RB, SubCommandType.DEPOSIT);
 		description = new String[] {
 				ChatColor.YELLOW+"/rb DEPOSIT [AMOUNT] {Playername} ",
 				ChatColor.GREEN+"  ",

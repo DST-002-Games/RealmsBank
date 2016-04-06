@@ -10,7 +10,7 @@ package net.krglok.realmsBank.Common;
  * @author Windu
  *</pre>
  */
-public enum RealmsSubCommandType 
+public enum SubCommandType 
 {
 	NONE ,
 	ACTIVATE ,
@@ -93,10 +93,10 @@ public enum RealmsSubCommandType
 	;
 	
 		
-	public static RealmsSubCommandType getRealmSubCommandType(String name)
+	public static SubCommandType getRealmSubCommandType(String name)
 	{
 		name = name.toUpperCase();
-		for (RealmsSubCommandType rsc : RealmsSubCommandType.values())
+		for (SubCommandType rsc : SubCommandType.values())
 		{
 			if (rsc.name().equalsIgnoreCase(name))
 			{
@@ -106,10 +106,10 @@ public enum RealmsSubCommandType
 		return NONE;
 	}
 
-	public static RealmsSubCommandType searchRealmSubCommandType(String name)
+	public static SubCommandType searchRealmSubCommandType(String name)
 	{
 		name = name.toUpperCase();
-		for (RealmsSubCommandType rsc : RealmsSubCommandType.values())
+		for (SubCommandType rsc : SubCommandType.values())
 		{
 			if (rsc.name().contains(name))
 			{

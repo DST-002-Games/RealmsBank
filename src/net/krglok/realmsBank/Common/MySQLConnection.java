@@ -8,86 +8,68 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Build a predefined SQLite connection for the plugin realms.
- * 
- *  
- * - as external tool you can use SQLIte Database Browser from http://sqlitebrowser.sourceforge.net
- * 
- * @author Windu
- *
- */
-public class SQliteConnection
+public class MySQLConnection 
 {
-	
 	private boolean isOpen = false;
 	private Connection connection;
-	private String path = "";
 	private String dbName = "realms";
-	private String fileName = dbName+".db";
-	private File file ;
+//	private File file ;
 	private Statement statement;
-	private boolean isDBexist = true;
+	private boolean isDBexist = false;
+
+	private String dbHost = "localhost"; // Hostname
+	private String dbPort = "3306";      // Port -- Standard: 3306
+	private String dbUser = "aleks";     // Datenbankuser
+	private String dbPass = "test";      // Datenbankpasswort	
 	/**
 	 * Holder for the last update count by a query.
 	 */
 	protected int lastUpdate;
 
-	public SQliteConnection()
+	public MySQLConnection()
 	{
-		this.path = "";
-		this.file = null;
 	}
-
-	public SQliteConnection(String pathName, String databaseName)
+	
+	public MySQLConnection(String hostName, String port, String userName, String password, String databaseName)
 	{
-		this.path = pathName;
+		this.dbHost = hostName;
+		this.dbPort = port;
+		this.dbUser = userName;
+		this.dbPass = password;
 		this.dbName = databaseName;
-		this.fileName = this.dbName+".db";
-		setFile();
+//		this.fileName = this.dbName+".db";
+//		setFile();
 	}
 	
-	public SQliteConnection(String pathName)
-	{
-		this.path = pathName;
-		dbName = "realms";		
-		this.fileName = this.dbName+".db";
-		setFile();
-	}
-	
-	
-	protected void setFile()  
-	{
-		File folder;
-		try
-		{
-			folder = new File(this.path,fileName);
-			if (!folder.exists())
-			{
-				folder.mkdir();
-			}
-//			file = new File(folder.getAbsolutePath() + File.separator + fileName);
-			file = new File(this.path,fileName);
-			if (file.exists() == false)
-			{
-				isDBexist = false;
-				System.out.println(ConfigBasis.PLUGIN_NAME+" SQlite,JDBC , DB File missed look into ínstallation");
-			}
-		} catch (Exception e)
-		{
-			this.file = null;
-			System.out.println("SetFile: " + e);
-			System.out.println(ConfigBasis.PLUGIN_NAME+" setFile SQlite,JDBC");
-		}
-	}
 
-	protected boolean initialize() {
-		try {
-			Class.forName("org.sqlite.JDBC");
+	/**
+	 * get the predefined constant for connecting to database
+	 * 
+	 * @param databaseName
+	 */
+	public MySQLConnection(String databaseName)
+	{
+		dbName = databaseName;		
+	}
+	
+	
+	/**
+	 * initialize database driver
+	 * will be done automatic and only once per connection
+	 *  
+	 * @return
+	 */
+	protected boolean initialize() 
+	{
+		try 
+		{
+//			Class.forName("org.sqlite.JDBC");
+			Class.forName("org.mysql.JDBC");
 		  return true;
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) 
+		{
 			System.out.println("Class not found in initialize(): " + e);
-			System.out.println(ConfigBasis.PLUGIN_NAME+" init SQlite,JDBC");
+		       System.out.println(ConfigBasis.PLUGIN_NAME+" init MySQL,JDBC");
 		  return false;
 	    }
 	}
@@ -103,12 +85,11 @@ public class SQliteConnection
 		
 		if (initialize()) 
 		{
-//			this.statement  = connection.createStatement();
 			if (isDBexist == true)
 			{
 				try
 				{
-					connection = DriverManager.getConnection("jdbc:sqlite:" + (file == null ? ":memory:" : file.getAbsolutePath()));
+					connection = DriverManager.getConnection("jdbc:mysql://"+dbHost+":"+ dbPort+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);				
 					this.statement  = connection.createStatement();
 					isOpen = true;
 				} catch (SQLException e) 
@@ -255,19 +236,10 @@ public class SQliteConnection
 		this.connection = connection;
 	}
 
-	public String getPath()
-	{
-		return this.path;
-	}
-
-	public String getFileName()
-	{
-		return this.fileName;
-	}
 
 	public String getDbName()
 	{
 		return this.dbName;
 	}
-	
+
 }

@@ -59,15 +59,15 @@ public interface MessageInterface
 	 */
 	public void errorPermission(CommandSender sender);
 
-	public void errorArgs(CommandSender sender, RealmsSubCommandType subCommand);
+	public void errorArgs(CommandSender sender, SubCommandType subCommand);
 
-	public void errorArgWrong(CommandSender sender, RealmsSubCommandType subCommand);
+	public void errorArgWrong(CommandSender sender, SubCommandType subCommand);
 
-	public void errorSettleID(CommandSender sender, RealmsSubCommandType subCommand);
+	public void errorSettleID(CommandSender sender, SubCommandType subCommand);
 
-	public void errorRegion(CommandSender sender, RealmsSubCommandType subCommand);
+	public void errorRegion(CommandSender sender, SubCommandType subCommand);
 
-	public void errorItem(CommandSender sender, RealmsSubCommandType subCommand);
+	public void errorItem(CommandSender sender, SubCommandType subCommand);
 	
 	public void errorFileIO(String name, Exception e);
 	

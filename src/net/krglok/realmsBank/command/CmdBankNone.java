@@ -6,7 +6,7 @@ import net.krglok.realmsBank.RealmsBank;
 import net.krglok.realmsBank.Common.*;
 import net.krglok.realmsBank.Common.aRealmsCommand;
 import net.krglok.realmsBank.Common.RealmsCommandType;
-import net.krglok.realmsBank.Common.RealmsSubCommandType;
+import net.krglok.realmsBank.Common.SubCommandType;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -17,7 +17,7 @@ public class CmdBankNone extends aRealmsCommand
 
 	public CmdBankNone()
 	{
-		super(RealmsCommandType.REALMSBANK ,  RealmsSubCommandType.NONE);
+		super(RealmsCommandType.REALMSBANK ,  SubCommandType.NONE);
 		description = new String[] {
 				ChatColor.RED+"command not found , use one of the following ",
 				ChatColor.GREEN+"/rbAdmin [HELP] only for ops to control the plugin ",

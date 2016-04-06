@@ -175,28 +175,28 @@ public class MessageData implements MessageInterface
 		sender.sendMessage(ChatColor.RED+TextConstant.NO_PERMISSION);
 	}
 
-	public void errorArgs(CommandSender sender, RealmsSubCommandType subCommand)
+	public void errorArgs(CommandSender sender, SubCommandType subCommand)
 	{
 		sender.sendMessage(ChatColor.RED+TextConstant.NOT_ENOUGH_ARGUMENTS_FOR+" "+subCommand);
 	}
 
-	public void errorArgWrong(CommandSender sender, RealmsSubCommandType subCommand)
+	public void errorArgWrong(CommandSender sender, SubCommandType subCommand)
 	{
 		sender.sendMessage(ChatColor.RED+TextConstant.WRONG_ARGUMENTS+" "+subCommand);
 	}
 
-	public void errorSettleID(CommandSender sender, RealmsSubCommandType subCommand)
+	public void errorSettleID(CommandSender sender, SubCommandType subCommand)
 	{
 		sender.sendMessage(ChatColor.RED+TextConstant.WRONG_SETTLEMNET_ID+" "+subCommand);
 		
 	}
 
-	public void errorRegion(CommandSender sender, RealmsSubCommandType subCommand)
+	public void errorRegion(CommandSender sender, SubCommandType subCommand)
 	{
 		sender.sendMessage(ChatColor.RED+TextConstant.REGION_NOT_FOUND+" "+subCommand);
 	}
 
-	public void errorItem(CommandSender sender, RealmsSubCommandType subCommand)
+	public void errorItem(CommandSender sender, SubCommandType subCommand)
 	{
 		sender.sendMessage(ChatColor.RED+TextConstant.WRONG_ITEMNAME+" "+subCommand);
 	}

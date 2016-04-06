@@ -34,7 +34,7 @@ public class TableYml extends TableData
 			{
 				if (this.createTable() == false)
 				{
-					System.out.println("[REALMS] SQL TABLE NOT created "+this.tablename);
+					System.out.println(ConfigBasis.PLUGIN_NAME+" SQL TABLE NOT created "+this.tablename);
 				}
 			}
 		} catch (SQLException e)
@@ -91,7 +91,7 @@ public class TableYml extends TableData
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("[REALMS] SQL Delete Error on "+tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" SQL Delete Error on "+tablename);
 
 		}
 	}
@@ -120,7 +120,7 @@ public class TableYml extends TableData
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[REALMS] SQL Select Error on "+tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" SQL Select Error on "+tablename);
 			return null;
 		}
 	}
@@ -148,7 +148,7 @@ public class TableYml extends TableData
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("[REALMS] SQL Contain Error on "+tablename);
+			System.out.println(ConfigBasis.PLUGIN_NAME+" SQL Contain Error on "+tablename);
 		}
 		return false;
 	}
@@ -165,7 +165,7 @@ public class TableYml extends TableData
 					;
 			if (insert(insertQuery) == false)
 			{
-				System.out.println("[REALMS] SQL Insert Error on "+tablename);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL Insert Error on "+tablename);
 			}
 		} else
 		{
@@ -175,7 +175,7 @@ public class TableYml extends TableData
 					;		
 			if (update(updateQuery) == false)
 			{
-				System.out.println("[REALMS] SQL Update Error on "+tablename);
+				System.out.println(ConfigBasis.PLUGIN_NAME+" SQL Update Error on "+tablename);
 			}
 			
 		}

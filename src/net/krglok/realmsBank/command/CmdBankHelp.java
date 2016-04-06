@@ -6,7 +6,7 @@ import net.krglok.realmsBank.RealmsBank;
 import net.krglok.realmsBank.Common.MessageList;
 import net.krglok.realmsBank.Common.aRealmsCommand;
 import net.krglok.realmsBank.Common.RealmsCommandType;
-import net.krglok.realmsBank.Common.RealmsSubCommandType;
+import net.krglok.realmsBank.Common.SubCommandType;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +18,7 @@ public class CmdBankHelp extends aRealmsCommand
 	
 	public CmdBankHelp()
 	{
-		super(RealmsCommandType.RB, RealmsSubCommandType.HELP);
+		super(RealmsCommandType.RB, SubCommandType.HELP);
 		description = new String[] {
 			ChatColor.YELLOW+"/realmsbank HELP [page] {WORD} ",
 			ChatColor.GREEN+"  ",
